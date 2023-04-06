@@ -3,73 +3,11 @@
 
 <head>
 	<title>Manuel</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			font-size: 16px;
-			line-height: 1.5;
-			background-color: #f2f2f2;
-		}
-
-		label {
-			display: block;
-			margin-bottom: 10px;
-		}
-
-		input[type="text"] {
-			padding: 5px;
-			margin-bottom: 10px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			font-size: 16px;
-			line-height: 1.5;
-			width: 300px;
-		}
-
-		button {
-			/* padding: 5px; */
-			background-color: #4CAF50;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			font-size: 16px;
-			line-height: 1.5;
-			margin-bottom: 10px;
-			width: 200px;
-			height: 40px;
-		}
-
-		button:hover {
-			background-color: #3e8e41;
-		}
-
-		iframe {
-			display: block;
-			margin-bottom: 20px;
-		}
-
-		button:last-child {
-			margin-right: 10px;
-		}
-
-		h1 {
-			font-size: 15px;
-		}
-	</style>
-
-	<style>
-		iframe {
-			display: inline-block;
-			width: 48%;
-			height: 800px;
-			border: 1px solid black;
-			margin: 5px;
-		}
-	</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 
 	<div id="firstbutton">
 		<div>
@@ -85,30 +23,40 @@
 		</div>
 
 		<div>
+			<label for="edition">Choisissez une édition :</label>
+			<select name="edition" id="edition-select" onchange="editionchoisie()">
+				<option value="hachette">Hachette</option>
+				<option value="didier">Didier</option>
+				<option value="hatier">Hatier</option>
+				<option value="LLS">LLS</option>
+			</select>
+			<p id="editionesthcoisieest"></p>
+		</div>
+		<div>
 			<a href="rechercher.html">Cherche ton code ici</a>
 		</div>
 	</div>
 
 	<div>
 		<h1>Liens rapides :</h1>
-		<button onclick="changerURL(9782017102106)">
+		<button onclick="changerURL(9782017102106, 'hachette')">
 			<h1>Declic Maths 1re</h1>
 		</button>
-		<button onclick="changerURL(9782017102120)">
+		<button onclick="changerURL(9782017102120, 'hachette')">
 			<h1>Physique Chimie 1re</h1>
 		</button>
-		<button onclick="changerURL(9782017102243)">
+		<button onclick="changerURL(9782017102243, 'hachette')">
 			<h1>Mitreden Allemand 1re</h1>
 		</button>
 	</div>
 
-	<div>
+	<div id="iframe">
 		<iframe id="myframe1" src="404.html"></iframe>
 		<iframe id="myframe2" src="404.html"></iframe>
 	</div>
 
 	<div>
-		<button onclick="changerPage(-2)">&#x2190;	 Page précédente</button>
+		<button onclick="changerPage(-2)">&#x2190; Page précédente</button>
 		<button onclick="changerPage(2)">Page suivante &#x2192;</button>
 	</div>
 
@@ -122,13 +70,44 @@
 		var nbpage = document.getElementById("nbpage");
 
 
+		function editionchoisie() {
+			var editionchoisie = document.getElementsByName("edition")[0].value;
+
+			if (editionchoisie == 'hachette') {
+				console.log("hachette");
+				document.getElementById("editionesthcoisieest").innerHTML = "";
+			} 
+			else if ((editionchoisie  == 'didier') || (editionchoisie  == 'hatier')) {
+				console.log("DH");
+				document.getElementById("editionesthcoisieest").innerHTML = "";
+			}
+			else {
+				document.getElementById("editionesthcoisieest").innerHTML = "&#9888 Cette édition n'est pas encore supportée &#9888";
+			}
+		}
+
+
 		function urlachanger() {
 			var code = document.getElementById("code").value;
-			changerURL(code)
+			var editionchoisie = document.getElementsByName("edition")[0].value;
+			changerURL(code, editionchoisie)
 		}
-		function changerURL(code) {
-			var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
-			var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
+		function changerURL(code, editionchoisie) {
+			if (editionchoisie == 'hachette') {
+				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
+				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
+			} 
+			else if ((editionchoisie  == 'didier') || (editionchoisie  == 'hatier')) {
+				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page1.xhtml?interface=postMessage";
+				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
+			}
+			else {
+				
+			}
+
+
+
+			
 			iframe1.src = newUrl1;
 			iframe2.src = newUrl2;
 			url1 = newUrl1;
