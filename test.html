@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lecture de fichier CSV</title>
+</head>
+<body>
+	<h1>Valeur de la 2ème ligne, 3ème colonne :</h1>
+	<p id="valeur"></p>
+
+	<script>
+		// création d'un objet XMLHttpRequest pour envoyer une requête de lecture du fichier CSV
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				// séparer les lignes du fichier CSV
+				var lignes = this.responseText.split("\n");
+				// récupérer la deuxième ligne
+				var deuxieme_ligne = lignes[1];
+				// séparer les valeurs de la deuxième ligne
+				var valeurs = deuxieme_ligne.split(",");
+				// récupérer la troisième colonne (qui est la deuxième valeur)
+				var troisieme_colonne = valeurs[5];
+				// afficher la valeur de la troisième colonne dans l'élément HTML approprié
+				document.getElementById("valeur").innerHTML = troisieme_colonne;
+			}
+		};
+		// envoyer la requête pour lire le fichier CSV
+		xhttp.open("GET", "liste.csv", true);
+		xhttp.send();
+	</script>
+</body>
+</html>

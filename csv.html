@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Affichage du contenu d'un fichier CSV</title>
+  </head>
+  <body>
+    <table id="tableau"></table>
+    <script>
+      // Lecture du fichier CSV
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          afficherTableau(this.responseText);
+        }
+      };
+      xhttp.open("GET", "liste.csv", true);
+      xhttp.send();
+
+      // Affichage du contenu dans une table HTML
+      function afficherTableau(csv) {
+        const lignes = csv.split('\n');
+        const tableau = document.getElementById('tableau');
+        for (let i = 0; i < lignes.length; i++) {
+          const colonnes = lignes[i].split(',');
+          const ligne = document.createElement('tr');
+          for (let j = 0; j < colonnes.length; j++) {
+            const cellule = document.createElement('td');
+            const texte = document.createTextNode(colonnes[j]);
+            cellule.appendChild(texte);
+            ligne.appendChild(cellule);
+          }
+          tableau.appendChild(ligne);
+        }
+      }
+    </script>
+  </body>
+</html>

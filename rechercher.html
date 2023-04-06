@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recherche d'informations dans un fichier CSV</title>
+  </head>
+  <body>
+    <label for="recherche">Recherche :</label>
+    <input type="text" id="recherche" onkeyup="chercher()" placeholder="Entrez un nom...">
+    <br>
+    <a href="index.html">Retourne sur la page principale</a>
+    <div id="resultats"></div>
+    <p id="valeur"></p>
+
+    <script>
+      // Lecture du fichier CSV
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          const lignes = this.responseText.split('\n');
+          const donnees = [];
+          for (let i = 0; i < lignes.length; i++) {
+            donnees.push(lignes[i].split(','));
+          }
+          document.getElementById('recherche').setAttribute('donnees', JSON.stringify(donnees));
+        }
+      };
+      xhttp.open("GET", "liste.csv", true);
+      xhttp.send();
+
+      // Recherche d'une information dans le fichier CSV
+      function chercher() {
+        const donnees = JSON.parse(document.getElementById('recherche').getAttribute('donnees'));
+        const recherche = document.getElementById('recherche').value;
+        const resultat = [];
+        for (let i = 0; i < donnees.length; i++) {
+          for (let j = 0; j < donnees[i].length; j++) {
+            if (donnees[i][j].toLowerCase().includes(recherche.toLowerCase())) {
+              resultat.push(donnees[i]);
+              break;
+            }
+          }
+        }
+        afficherResultats(resultat);
+      }
+
+      // Affichage des résultats sur la page HTML
+      function afficherResultats(resultat) {
+        const table = document.createElement('table');
+        table.innerHTML = '<tr><th>Edition</th><th>Code manuel</th><th>Nom du manuel</th><th>Nombre de pages</th><th>Code manuel prof</th></tr>';
+        for (let i = 0; i < resultat.length; i++) {
+          const ligne = document.createElement('tr');
+          for (let j = 4; j < 9; j++) {
+            const cellule = document.createElement('td');
+            const texte = document.createTextNode(resultat[i][j]);
+            cellule.appendChild(texte);
+            ligne.appendChild(cellule);
+          }
+          table.appendChild(ligne);
+        }
+        document.getElementById('resultats').innerHTML = '';
+        document.getElementById('resultats').appendChild(table);
+      }
+    </script>
+  </body>
+</html>
