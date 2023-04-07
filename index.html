@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="editionchoisie()">
 
 
 	<div id="firstbutton">
@@ -66,6 +66,11 @@
 		<iframe id="myframe2" src="404.html"></iframe>
 	</div>
 
+	<div id="img">
+		<img id="myimg1" src="404.html">
+		<img id="myimg2" src="404.html">
+	</div>
+
 	<div>
 		<button onclick="pageachanger(-2)">&#x2190; Page précédente</button>
 		<button onclick="pageachanger(2)">Page suivante &#x2192;</button>
@@ -74,6 +79,10 @@
 	<script>
 		var iframe1 = document.getElementById("myframe1");
 		var iframe2 = document.getElementById("myframe2");
+		var diviframe = document.getElementById("iframe")
+		var img1 = document.getElementById("myimg1");
+		var img2 = document.getElementById("myimg2")
+		var divimg = document.getElementById("img");
 		var url1 = iframe1.src;
 		var url2 = iframe2.src;
 		var page1 = 1;
@@ -87,17 +96,26 @@
 			if (editionchoisie == 'hachette') {
 				console.log("hachette");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
+				diviframe.style.display = ''
+				divimg.style.display = 'none'
+
 			}
 			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
 				console.log("DH");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
+				diviframe.style.display = ''
+				divimg.style.display = 'none'
 			}
 			else if (editionchoisie == 'belin') {
 				console.log("belin");
-				document.getElementById("editionesthcoisieest").innerHTML = "";
+				document.getElementById("editionesthcoisieest").innerHTML = "ca bug encore";
+				diviframe.style.display = 'none'
+				divimg.style.display = ''
 			}
 			else {
 				document.getElementById("editionesthcoisieest").innerHTML = "&#9888 Cette édition n'est pas encore supportée &#9888";
+				diviframe.style.display = 'none'
+				divimg.style.display = 'none'
 			}
 		}
 
@@ -112,21 +130,26 @@
 			if (editionchoisie == 'hachette') {
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
+				iframe1.src = newUrl1;
+				iframe2.src = newUrl2;
 			}
 			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page1.xhtml?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
+				iframe1.src = newUrl1;
+				iframe2.src = newUrl2;
 			}
 			else if (editionchoisie == 'belin') {
 				var newUrl1 = "Belin/" + code + "/page1.jpg";
 				var newUrl2 = "Belin/" + code + "/page2.jpg";
+				img1.src = newUrl1;
+				img2.src = newUrl2;
 			}
 			else {
 
 			}
 
-			iframe1.src = newUrl1;
-			iframe2.src = newUrl2;
+			
 			url1 = newUrl1;
 			url2 = newUrl2;
 			page1 = 1;
@@ -190,8 +213,8 @@
 				} else if (page2 > 600) {
 					page2 = 600;
 				}
-				iframe1.src = url1.replace(/page\d+/, "page" + page1);
-				iframe2.src = url2.replace(/page\d+/, "page" + page2);
+				img1.src = url1.replace(/page\d+/, "page" + page1);
+				img2.src = url2.replace(/page\d+/, "page" + page2);
 				nbpage.value = page1
 			}
 
