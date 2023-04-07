@@ -28,6 +28,7 @@
 				<option value="hachette">Hachette</option>
 				<option value="didier">Didier</option>
 				<option value="hatier">Hatier</option>
+				<option value="belin">Belin</option>
 				<option value="LLS">LLS</option>
 			</select>
 			<p id="editionesthcoisieest"></p>
@@ -48,6 +49,16 @@
 		<button onclick="changerURL(9782017102243, 'hachette')">
 			<h1>Mitreden Allemand 1re</h1>
 		</button>
+		<button onclick="changerURL(9782401090132, 'hatier')">
+			<h1>Manuel HB test</h1>
+		</button>
+		<button onclick="changerURL('1ere/histoire-premiere', 'belin')">
+			<h1>Histoire belin</h1>
+		</button>
+
+		<button onclick="changerURL('1ere/geographie-premiere', 'belin')">
+			<h1>Geographie-premiere belin</h1>
+		</button>
 	</div>
 
 	<div id="iframe">
@@ -56,8 +67,8 @@
 	</div>
 
 	<div>
-		<button onclick="changerPage(-2)">&#x2190; Page précédente</button>
-		<button onclick="changerPage(2)">Page suivante &#x2192;</button>
+		<button onclick="pageachanger(-2)">&#x2190; Page précédente</button>
+		<button onclick="pageachanger(2)">Page suivante &#x2192;</button>
 	</div>
 
 	<script>
@@ -76,9 +87,13 @@
 			if (editionchoisie == 'hachette') {
 				console.log("hachette");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
-			} 
-			else if ((editionchoisie  == 'didier') || (editionchoisie  == 'hatier')) {
+			}
+			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
 				console.log("DH");
+				document.getElementById("editionesthcoisieest").innerHTML = "";
+			}
+			else if (editionchoisie == 'belin') {
+				console.log("belin");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
 			}
 			else {
@@ -92,22 +107,24 @@
 			var editionchoisie = document.getElementsByName("edition")[0].value;
 			changerURL(code, editionchoisie)
 		}
+
 		function changerURL(code, editionchoisie) {
 			if (editionchoisie == 'hachette') {
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
-			} 
-			else if ((editionchoisie  == 'didier') || (editionchoisie  == 'hatier')) {
+			}
+			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page1.xhtml?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
 			}
+			else if (editionchoisie == 'belin') {
+				var newUrl1 = "Belin/" + code + "/page1.jpg";
+				var newUrl2 = "Belin/" + code + "/page2.jpg";
+			}
 			else {
-				
+
 			}
 
-
-
-			
 			iframe1.src = newUrl1;
 			iframe2.src = newUrl2;
 			url1 = newUrl1;
@@ -116,22 +133,68 @@
 			page2 = 2;
 		}
 
-		function changerPage(delta) {
-			page1 += delta;
-			page2 += delta;
-			if (page1 < 1) {
-				page1 = 1;
-			} else if (page1 > 500) {
-				page1 = 500;
+		function pageachanger(delta) {
+			console.log("pageachanger");
+			var editionchoisie = document.getElementsByName("edition")[0].value;
+			changerPage(delta, editionchoisie)
+		}
+		
+		function changerPage(delta, editionchoisie) {
+			if (editionchoisie == 'hachette') {
+				console.log("hachette");
+				page1 += delta;
+				page2 += delta;
+				if (page1 < 1) {
+					page1 = 1;
+				} else if (page1 > 600) {
+					page1 = 600;
+				}
+				if (page2 < 1) {
+					page2 = 2;
+				} else if (page2 > 600) {
+					page2 = 600;
+				}
+				iframe1.src = url1.replace(/Page_\d+/, "Page_" + page1);
+				iframe2.src = url2.replace(/Page_\d+/, "Page_" + page2);
+				nbpage.value = page1
 			}
-			if (page2 < 1) {
-				page2 = 2;
-			} else if (page2 > 500) {
-				page2 = 500;
+			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
+				console.log("hatier ou didier");
+				page1 += delta;
+				page2 += delta;
+				if (page1 < 1) {
+					page1 = 1;
+				} else if (page1 > 600) {
+					page1 = 600;
+				}
+				if (page2 < 1) {
+					page2 = 2;
+				} else if (page2 > 600) {
+					page2 = 600;
+				}
+				iframe1.src = url1.replace(/page\d+/, "page" + page1);
+				iframe2.src = url2.replace(/page\d+/, "page" + page2);
+				nbpage.value = page1
 			}
-			iframe1.src = url1.replace(/Page_\d+/, "Page_" + page1);
-			iframe2.src = url2.replace(/Page_\d+/, "Page_" + page2);
-			nbpage.value = page1
+			else if (editionchoisie == 'belin') {
+				console.log("belin");
+				page1 += delta;
+				page2 += delta;
+				if (page1 < 1) {
+					page1 = 1;
+				} else if (page1 > 600) {
+					page1 = 600;
+				}
+				if (page2 < 1) {
+					page2 = 2;
+				} else if (page2 > 600) {
+					page2 = 600;
+				}
+				iframe1.src = url1.replace(/page\d+/, "page" + page1);
+				iframe2.src = url2.replace(/page\d+/, "page" + page2);
+				nbpage.value = page1
+			}
+
 		}
 
 		function changerNBpage() {
