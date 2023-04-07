@@ -5,12 +5,17 @@
 	<title>Manuel</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="shortcut icon" href="img/icone.ico" type="image/x-icon">
+	<!-- <script src="js.js"></script> -->
 </head>
 
-<body onload="editionchoisie()">
+<body onload="editionchoisie(), checkCookie()">
 
 
 	<div id="firstbutton">
+		<div class="changeTheme">
+			<img src="img/blackandwhite.png" alt="blackandwhite" style="max-width: 50px; max-height: 50px; margin: 10px;">
+		</div>
+
 		<div>
 			<label for="code">Entrez le code :</label>
 			<input type="text" id="code" name="code" value="9782017102106">
@@ -62,6 +67,12 @@
 		</button>
 	</div>
 
+	<div class="slider">
+		<div id="glissière" onclick="taille()" class="col">
+			<input id="slider" type="range" oninput="taille()" min="579" max="1200" class="slider" value="579">
+		</div>
+	</div>
+
 	<div id="iframe">
 		<iframe id="myframe1" src="html/404.html"></iframe>
 		<iframe id="myframe2" src="html/404.html"></iframe>
@@ -90,33 +101,37 @@
 		var page2 = 2;
 		var nbpage = document.getElementById("nbpage");
 
-
 		function editionchoisie() {
 			var editionchoisie = document.getElementsByName("edition")[0].value;
+			var slider = document.getElementById("slider");
 
 			if (editionchoisie == 'hachette') {
 				console.log("hachette");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
-				diviframe.style.display = ''
-				divimg.style.display = 'none'
+				diviframe.style.display = '';
+				slider.style.display = '';
+				divimg.style.display = 'none';
 
 			}
 			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
 				console.log("DH");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
-				diviframe.style.display = ''
-				divimg.style.display = 'none'
+				diviframe.style.display = '';
+				slider.style.display = '';
+				divimg.style.display = 'none';
 			}
 			else if (editionchoisie == 'belin') {
 				console.log("belin");
 				document.getElementById("editionesthcoisieest").innerHTML = "ca bug encore";
-				diviframe.style.display = 'none'
-				divimg.style.display = ''
+				diviframe.style.display = 'none';
+				slider.style.display = 'none';
+				divimg.style.display = '';
 			}
 			else {
 				document.getElementById("editionesthcoisieest").innerHTML = "&#9888 Cette édition n'est pas encore supportée &#9888";
-				diviframe.style.display = 'none'
-				divimg.style.display = 'none'
+				diviframe.style.display = 'none';
+				divimg.style.display = 'none';
+				slider.style.display = 'none';
 			}
 		}
 
@@ -124,7 +139,7 @@
 		function urlachanger() {
 			var code = document.getElementById("code").value;
 			var editionchoisie = document.getElementsByName("edition")[0].value;
-			changerURL(code, editionchoisie)
+			changerURL(code, editionchoisie);
 		}
 
 		function changerURL(code, editionchoisie) {
@@ -150,7 +165,6 @@
 
 			}
 
-			
 			url1 = newUrl1;
 			url2 = newUrl2;
 			page1 = 1;
@@ -160,9 +174,9 @@
 		function pageachanger(delta) {
 			console.log("pageachanger");
 			var editionchoisie = document.getElementsByName("edition")[0].value;
-			changerPage(delta, editionchoisie)
+			changerPage(delta, editionchoisie);
 		}
-		
+
 		function changerPage(delta, editionchoisie) {
 			if (editionchoisie == 'hachette') {
 				console.log("hachette");
@@ -223,9 +237,75 @@
 
 		function changerNBpage() {
 			var nbpage = document.getElementById("nbpage").value;
-			nbtochange = nbpage - page1
-			changerPage(nbtochange)
+			nbtochange = nbpage - page1;
+			changerPage(nbtochange);
 		}
+	</script>
+
+	<script>
+		function taille() {
+			var entree = document.getElementById("slider");
+			var myframe1 = document.getElementById("myframe1");
+			var myframe2 = document.getElementById("myframe2");
+			myframe1.style.width = entree.value + "px";
+			myframe1.style.height = entree.value * 1.4 + "px";
+			myframe2.style.width = entree.value + "px";
+			myframe2.style.height = entree.value * 1.4 + "px";
+		}
+	</script>
+
+	<script>
+		function toggleFullScreen() {
+			if (!document.fullscreenElement) {
+				document.documentElement.requestFullscreen();
+			} else if (document.exitFullscreen) {
+				document.exitFullscreen();
+			}
+		}
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Enter") {
+				toggleFullScreen();
+			}
+		}, false);
+	</script>
+
+	<script>
+		let toggleTheme = 0;
+		var darkMode = getCookie("dark-mode");
+
+		function getCookie(name) {
+			var value = "; " + document.cookie;
+			var parts = value.split("; " + name + "=");
+			if (parts.length == 2) return parts.pop().split(";").shift();
+		}
+
+		// cookie pour le mode sombre
+		function checkCookie() {
+			if (darkMode == "true") {
+				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
+				document.documentElement.style.setProperty('--background', '#262626');
+				toggleTheme--;
+			} else if (darkMode == "false") {
+				document.documentElement.style.setProperty('--ecriture', '#262626');
+				document.documentElement.style.setProperty('--background', '#f1f1f1');
+			}
+		}
+
+		// mode sombre
+		const switchThemeBtn = document.querySelector('.changeTheme')
+		switchThemeBtn.addEventListener('click', () => {
+			if (toggleTheme === 0) {
+				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
+				document.documentElement.style.setProperty('--background', '#262626');
+				document.cookie = "dark-mode=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+				toggleTheme--;
+			} else {
+				document.documentElement.style.setProperty('--ecriture', '#262626');
+				document.documentElement.style.setProperty('--background', '#f1f1f1');
+				document.cookie = "dark-mode=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+				toggleTheme++;
+			}
+		})
 	</script>
 </body>
 
