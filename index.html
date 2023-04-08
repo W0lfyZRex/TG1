@@ -4,7 +4,7 @@
 <head>
 	<title>Manuel</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" href="img/icone.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="assets/img/icone.ico" type="image/x-icon">
 	<!-- <script src="js.js"></script> -->
 </head>
 
@@ -13,7 +13,7 @@
 
 	<div id="firstbutton">
 		<div class="changeTheme">
-			<img src="img/blackandwhite.png" alt="blackandwhite" style="max-width: 50px; max-height: 50px; margin: 10px;">
+			<img src="assets/img/blackandwhite.png" alt="blackandwhite" style="max-width: 50px; max-height: 50px; margin: 10px;">
 		</div>
 
 		<div>
@@ -79,8 +79,8 @@
 	</div>
 
 	<div id="img">
-		<img id="myimg1" src="img/404.png">
-		<img id="myimg2" src="img/404.png">
+		<img id="myimg1" src="assets/img/404.png">
+		<img id="myimg2" src="assets/img/404.png">
 	</div>
 
 	<div>
@@ -282,10 +282,12 @@
 		// cookie pour le mode sombre
 		function checkCookie() {
 			if (darkMode == "true") {
+				document.documentElement.style.setProperty('--color-scheme', 'dark')
 				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
 				document.documentElement.style.setProperty('--background', '#262626');
 				toggleTheme--;
 			} else if (darkMode == "false") {
+				document.documentElement.style.setProperty('--color-scheme', 'light')
 				document.documentElement.style.setProperty('--ecriture', '#262626');
 				document.documentElement.style.setProperty('--background', '#f1f1f1');
 			}
@@ -294,12 +296,18 @@
 		// mode sombre
 		const switchThemeBtn = document.querySelector('.changeTheme')
 		switchThemeBtn.addEventListener('click', () => {
+
+			// mode sombre 
 			if (toggleTheme === 0) {
+				document.documentElement.style.setProperty('--color-scheme', 'dark')
 				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
 				document.documentElement.style.setProperty('--background', '#262626');
 				document.cookie = "dark-mode=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
 				toggleTheme--;
-			} else {
+			}
+			// mode clairs
+			 else {
+				document.documentElement.style.setProperty('--color-scheme', 'light')
 				document.documentElement.style.setProperty('--ecriture', '#262626');
 				document.documentElement.style.setProperty('--background', '#f1f1f1');
 				document.cookie = "dark-mode=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
