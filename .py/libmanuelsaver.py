@@ -12,25 +12,26 @@ from tkinter import messagebox
 
 wkhtml_path = pdfkit.configuration(wkhtmltopdf="C:/Program Files/wkhtmltox/bin/wkhtmltopdf.exe")
 
-nbpages = 68
-url = "https://storage.libmanuels.fr/Belin/manuel/9782210113183/3/OEBPS/page0{}.xhtml"
-
+nbpages = 289
+url = "https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/4/OEBPS/cover.xhtml"
 output = 'C:/Users/Noham/Documents/GitHub/Manuel/.py/gen/prof{}.pdf'
-# for offset in range(10, nbpages + 1, 1):
-#     newurl = url.format(offset)
-#     print(newurl)
-#     newoutput = output.format(offset)
-#     print(str(offset) + "/" + str(nbpages))
+pdfkit.from_url(url, 'C:/Users/Noham/Documents/GitHub/Manuel/.py/gen/prof1.pdf', configuration=wkhtml_path, verbose=True)
 
-#     pdfkit.from_url(newurl,
-#                         newoutput,
-#                         configuration=wkhtml_path,
-#                         verbose=True)
+
+def newurlformer(i):
+    newurl = f"https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/4/OEBPS/page{i:03}.xhtml"
+    print(newurl)
+    return(newurl)
+
+for offset in range(2, nbpages + 1):
+    newoutput = output.format(offset)
+    print(str(offset) + "/" + str(nbpages))
+    pdfkit.from_url(newurlformer(offset), newoutput, configuration=wkhtml_path, verbose=True)
 
 pdfs = 'C:/Users/Noham/Documents/GitHub/Manuel/.py/gen/prof{}.pdf'
 pdfsnewpdfs = []
 
-for offset in range(2, nbpages + 1, 1):
+for offset in range(1, nbpages + 1, 1):
     newpdfs = pdfs.format(offset)
     pdfsnewpdfs.append(str(newpdfs))
 # print(pdfsnewpdfs)

@@ -2,11 +2,12 @@
 # https://resources.manuelnumeriquemax.belin.education/manuals/hgemc-6/20.jpg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9yZXNvdXJjZXMubWFudWVsbnVtZXJpcXVlbWF4LmJlbGluLmVkdWNhdGlvbi9tYW51YWxzL2hnZW1jLTYvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY4MDg3MjQxMn19fV19&Signature=apxCl-4z3AcFP~gsDp0R6O9Jjh9zRS3Tt5g6HMnb6n-1-ltx-6VjdvrZW7Z6uSbAgAvaZ3nmmIZghsekvqQTbsO8JZYjWAA7TUS9PyXwAW5lvAuqZRFYAA5fABEcISToZRcu-Sty2PXACJ-ONeS4VMmtCzc20CyMTde53tDoVSXt~kdNbyCmMs61GBtcs19laeQpVvhtXmxT8hY4LXXd3BQtw7qrxU9h9ZlMEGmZT3rG4SzrqlI3TxARG5UwJDbZYPO3PLp63ALzXW2D3KPitrthaZuSlc5bRpB4MG9lwJSHrwRg-bwgEQ7VkzNszcejPocAi23QaotxAmGdUGvxxg__&Key-Pair-Id=APKAILORD3UGPYJSMW7Q
 # https://resources.manuelnumeriquemax.belin.education/manuals/hgemc-6/20.jpg?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9yZXNvdXJjZXMubWFudWVsbnVtZXJpcXVlbWF4LmJlbGluLmVkdWNhdGlvbi9tYW51YWxzL2ZyLTYvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY4MDg3MTQwNn19fV19&Signature=apxCl-4z3AcFP~gsDp0R6O9Jjh9zRS3Tt5g6HMnb6n-1-ltx-6VjdvrZW7Z6uSbAgAvaZ3nmmIZghsekvqQTbsO8JZYjWAA7TUS9PyXwAW5lvAuqZRFYAA5fABEcISToZRcu-Sty2PXACJ-ONeS4VMmtCzc20CyMTde53tDoVSXt~kdNbyCmMs61GBtcs19laeQpVvhtXmxT8hY4LXXd3BQtw7qrxU9h9ZlMEGmZT3rG4SzrqlI3TxARG5UwJDbZYPO3PLp63ALzXW2D3KPitrthaZuSlc5bRpB4MG9lwJSHrwRg-bwgEQ7VkzNszcejPocAi23QaotxAmGdUGvxxg__&Key-Pair-Id=APKAILORD3UGPYJSMW7Q
 
+# https://storage.libmanuels.fr/Belin/manuel/9791035824488/3/OEBPS/page068.xhtml
 
 debut = input('debut')
 reste = input('reste')
 
-nb = 549
+nb = 68
 liste = []
 for i in range (1,nb + 1):
     print(debut ,i, reste ,sep='')
