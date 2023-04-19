@@ -24,7 +24,7 @@
 
 		<div>
 			<label for="nbpage">Entrez la page :</label>
-			<input type="text" id="nbpage" name="nbpage" value="1">
+			<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
 			<button onclick="changerNBpage()">Changer la page du livre</button>
 		</div>
 
@@ -237,9 +237,13 @@ sesamth
 		}
 
 		function changerNBpage() {
+			var nbtochange = 0
 			var nbpage = document.getElementById("nbpage").value;
+			var editionchoisie = document.getElementsByName("edition")[0].value;
+			console.log('nbpage', nbpage);
 			nbtochange = nbpage - page1;
-			changerPage(nbtochange);
+			console.log('nbtochange' ,nbtochange);
+			changerPage(nbtochange, editionchoisie);
 		}
 	</script>
 
@@ -255,7 +259,7 @@ sesamth
 		}
 	</script>
 
-	<script>
+	<!-- <script>
 		function toggleFullScreen() {
 			if (!document.fullscreenElement) {
 				document.documentElement.requestFullscreen();
@@ -268,7 +272,7 @@ sesamth
 				toggleFullScreen();
 			}
 		}, false);
-	</script>
+	</script> -->
 
 	<script>
 		let toggleTheme = 0;
