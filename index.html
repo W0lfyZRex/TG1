@@ -13,8 +13,14 @@
 
 	<div id="firstbutton">
 		<div class="changeTheme">
-			<img src="assets/img/blackandwhite.png" alt="blackandwhite" style="max-width: 50px; max-height: 50px; margin: 10px;">
+			<img src="assets/img/blackandwhite.png" alt="blackandwhite"
+				style="max-width: 50px; max-height: 50px; margin: 10px;">
 		</div>
+
+		<!-- <div class="changeTheme">
+			<img src="assets/img/blackandwhite.png" alt="blackandwhite"
+				style="max-width: 50px; max-height: 50px; margin: 10px;" onclick="capture()">
+		</div> -->
 
 		<div>
 			<label for="code">Entrez le code :</label>
@@ -36,7 +42,7 @@
 				<option value="hatier">Hatier</option>
 				<option value="belin">Belin</option>
 				<option value="LLS">LLS</option>
-sesamth
+				sesamth
 			</select>
 			<p id="editionesthcoisieest"></p>
 		</div>
@@ -242,7 +248,7 @@ sesamth
 			var editionchoisie = document.getElementsByName("edition")[0].value;
 			console.log('nbpage', nbpage);
 			nbtochange = nbpage - page1;
-			console.log('nbtochange' ,nbtochange);
+			console.log('nbtochange', nbtochange);
 			changerPage(nbtochange, editionchoisie);
 		}
 	</script>
@@ -311,7 +317,7 @@ sesamth
 				toggleTheme--;
 			}
 			// mode clairs
-			 else {
+			else {
 				document.documentElement.style.setProperty('--color-scheme', 'light')
 				document.documentElement.style.setProperty('--ecriture', '#262626');
 				document.documentElement.style.setProperty('--background', '#f1f1f1');
@@ -320,6 +326,25 @@ sesamth
 			}
 		})
 	</script>
+	<!-- <script>
+		function capture() {
+			const canvas = document.createElement("canvas");
+			const context = canvas.getContext("2d");
+			const video = document.createElement("video");
+
+			try {
+				const captureStream = navigator.mediaDevices.getDisplayMedia();
+				video.srcObject = captureStream;
+				context.drawImage(video, 0, 0, window.width, window.height);
+				const frame = canvas.toDataURL("image/png");
+				captureStream.getTracks().forEach(track => track.stop());
+				window.location.href = frame;
+			} catch (err) {
+				console.error("Error: " + err);
+			}
+		};
+
+		capture();</script> -->
 </body>
 
 </html>
