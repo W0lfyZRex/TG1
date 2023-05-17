@@ -3,7 +3,7 @@
 
 <head>
 	<title>Manuel</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style2.css">
 	<link rel="shortcut icon" href="assets/img/icone.ico" type="image/x-icon">
 	<!-- <script src="js.js"></script> -->
 	<meta name="viewport" content="width=device-width">
@@ -107,7 +107,7 @@
 
 	<div class="slider">
 		<div id="glissière" onclick="taille()" class="col">
-			<input id="slider" type="range" oninput="taille()" min="579" max="1200" class="slider" value="579">
+			<input id="slider" type="range" oninput="taille()" min="30" max="200" class="slider" value="50">
 		</div>
 	</div>
 
@@ -131,7 +131,7 @@
 		<img id="myimg2" src="assets/img/404.png">
 	</div>
 
-	<div>
+	<div id="changepagebutton">
 		<button onclick="pageachanger(-2)">&#x2190; Page précédente</button>
 		<button onclick="pageachanger(2)">Page suivante &#x2192;</button>
 	</div>
@@ -173,9 +173,9 @@
 			}
 			else if (editionchoisie == 'belin') {
 				console.log("Belin");
-				document.getElementById("editionesthcoisieest").innerHTML = "ca bug encore";
+				document.getElementById("editionesthcoisieest").innerHTML = "";
 				diviframe.style.display = 'none';
-				slider.style.display = 'none';
+				slider.style.display = '';
 				divimg.style.display = '';
 				divserver.style.display = 'none';
 			}
@@ -183,7 +183,7 @@
 				console.log("LLS");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
 				diviframe.style.display = 'none';
-				slider.style.display = 'none';
+				slider.style.display = '';
 				divimg.style.display = '';
 				divserver.style.display = 'none';
 			}
@@ -191,11 +191,19 @@
 				console.log("sesa");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
 				diviframe.style.display = 'none';
-				slider.style.display = 'none';
+				slider.style.display = '';
 				divimg.style.display = '';
 				divserver.style.display = 'none';
 			}
 			else if (editionchoisie == 'magnard') {
+				console.log("magnard");
+				document.getElementById("editionesthcoisieest").innerHTML = "Le serveur n°1 devrait marcher mais au cas où les autres sont dispos.";
+				diviframe.style.display = '';
+				slider.style.display = '';
+				divimg.style.display = 'none';
+				divserver.style.display = '';
+			}
+			else if (editionchoisie == 'delagrave') {
 				console.log("magnard");
 				document.getElementById("editionesthcoisieest").innerHTML = "Le serveur n°1 devrait marcher mais au cas où les autres sont dispos.";
 				diviframe.style.display = '';
@@ -262,6 +270,13 @@
 			else if (editionchoisie == 'magnard') {
 				var newUrl1 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
 				var newUrl2 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
+				iframe1.src = newUrl1;
+				iframe2.src = newUrl2;
+			}
+			// https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/8/OEBPS/page005.xhtml
+			else if (editionchoisie == 'delagrave') {
+				var newUrl1 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
+				var newUrl2 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
 			}
@@ -362,7 +377,7 @@
 				nbpage.value = page1;
 			}
 			// /page003.xhtml?interface=postMessage"
-			else if (editionchoisie == 'magnard') {
+			else if ((editionchoisie == 'magnard') || (editionchoisie == 'delagrave')) {
 				// console.log("magnard");
 				page1 += delta;
 				page2 += delta;
@@ -398,12 +413,7 @@
 	<script>
 		function taille() {
 			var entree = document.getElementById("slider");
-			var myframe1 = document.getElementById("myframe1");
-			var myframe2 = document.getElementById("myframe2");
-			myframe1.style.width = entree.value + "px";
-			myframe1.style.height = entree.value * 1.4 + "px";
-			myframe2.style.width = entree.value + "px";
-			myframe2.style.height = entree.value * 1.4 + "px";
+			document.documentElement.style.setProperty('--scalenb', entree.value/100)
 		}
 	</script>
 
@@ -465,7 +475,6 @@
 		// mode sombre
 		const switchThemeBtn = document.querySelector('.changeTheme')
 		switchThemeBtn.addEventListener('click', () => {
-
 			// mode sombre 
 			if (toggleTheme === 0) {
 				document.documentElement.style.setProperty('--color-scheme', 'dark')
