@@ -28,7 +28,7 @@
 			<div>
 				<a href="rechercher.html">Cherche ton code ici</a>
 			</div>
-			<input type="text" id="code" name="code" value="9782017102106">
+			<input type="text" id="code" name="code" value="9782091317243">
 			<button onclick="urlachanger()">Changer de livre</button>
 		</div>
 
@@ -49,6 +49,7 @@
 				<option value="sesa">Sesamath</option>
 				<option value="magnard">Magnard</option>
 				<option value="delagrave">Delagrave</option>
+				<option value="nathan">Nathan</option>
 
 			</select>
 			<p id="editionesthcoisieest"></p>
@@ -210,12 +211,22 @@
 				document.documentElement.style.setProperty('--iframe-height', '2050px');
 			}
 			else if (editionchoisie == 'delagrave') {
-				console.log("magnard");
-				document.getElementById("editionesthcoisieest").innerHTML = "Le serveur n°1 devrait marcher mais au cas où les autres sont dispos.";
+				console.log("delagrave");
+				document.getElementById("editionesthcoisieest").innerHTML = "";
 				diviframe.style.display = '';
 				slider.style.display = '';
 				divimg.style.display = 'none';
 				divserver.style.display = '';
+			}
+			else if (editionchoisie == 'nathan') {
+				console.log("nathan");
+				document.getElementById("editionesthcoisieest").innerHTML = "";
+				diviframe.style.display = '';
+				slider.style.display = '';
+				divimg.style.display = 'none';
+				divserver.style.display = 'none';
+				document.documentElement.style.setProperty('--iframe-width', '1152px');
+				document.documentElement.style.setProperty('--iframe-height', '1594px');
 			}
 			else {
 				document.getElementById("editionesthcoisieest").innerHTML = "&#9888 Cette édition n'est pas encore supportée &#9888";
@@ -285,6 +296,12 @@
 				var newUrl2 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
+			}
+			else if (editionchoisie == 'nathan') {
+				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page0.jpg";
+				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page1.jpg";
+				img1.src = newUrl1;
+				img2.src = newUrl2;
 			}
 			else {
 
@@ -417,6 +434,26 @@
 				}
 				iframe1.src = url1.replace(/(\/page)\d{3}(\.xhtml\?interface=postMessage)/, "$1" + ("000" + page1).slice(-3) + "$2");
 				iframe2.src = url2.replace(/(\/page)\d{3}(\.xhtml\?interface=postMessage)/, "$1" + ("000" + page2).slice(-3) + "$2");
+				console.log(img1.src);
+				console.log(img2.src);
+				nbpage.value = page1;
+			}
+			else if (editionchoisie == 'nathan') {
+				// console.log("nathan");
+				page1 += delta;
+				page2 += delta;
+				if (page1 < 1) {
+					page1 = 1;
+				} else if (page1 > 600) {
+					page1 = 600;
+				}
+				if (page2 < 1) {
+					page2 = 2;
+				} else if (page2 > 600) {
+					page2 = 600;
+				}
+				img1.src = url1.replace(/\d+(?=\.jpg)/, page1);
+				img2.src = url2.replace(/\d+(?=\.jpg)/, page2);
 				console.log(img1.src);
 				console.log(img2.src);
 				nbpage.value = page1;
