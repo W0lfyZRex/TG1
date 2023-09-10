@@ -8,7 +8,7 @@ import re
 def getimg(url, nb):
     response = requests.get(url)
     if response.status_code == 200:
-        save_path = f"9782091317243/{nb}.jpg"
+        save_path = f"9782091317113/{nb}.jpg"
         with open(save_path, 'wb') as file:
             file.write(response.content)
         print(f"The image has been saved as '{save_path}'")
@@ -16,8 +16,8 @@ def getimg(url, nb):
         print(f"Failed to download the image. Status code: {response.status_code}")
 
 
-url = 'https://biblio.nathan.fr/epubs/web/4ebeff9ce5eb568f8142771fdac580b8aeb12f675d75fa4c1ebb4620050d6c01842394910eeee327/NATHAN/bibliomanuels/distrib_gp/2/1/10300/online/OEBPS/TOC.xhtml'
-debut = 'https://biblio.nathan.fr/epubs/web/4ebeff9ce5eb568f8142771fdac580b8aeb12f675d75fa4c1ebb4620050d6c01842394910eeee327/NATHAN/bibliomanuels/distrib_gp/2/1/10300/online/OEBPS/'
+url = 'https://biblio.nathan.fr/epubs/web/4ebeff9ce5eb568f8142771fdac580b8aeb12f675d75fa4c1ebb4620050d6c01842394910eeee327/NATHAN/bibliomanuels/distrib_gp/2/1/10366/online/OEBPS/TOC.xhtml'
+debut = 'https://biblio.nathan.fr/epubs/web/4ebeff9ce5eb568f8142771fdac580b8aeb12f675d75fa4c1ebb4620050d6c01842394910eeee327/NATHAN/bibliomanuels/distrib_gp/2/1/10366/online/OEBPS/'
 r = requests.get(url)
 soup = BeautifulSoup(r.text, 'html.parser')
 pagelist = soup.find('nav', {'epub:type': 'page-list'})

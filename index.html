@@ -71,6 +71,19 @@
 		</div>
 	</div>
 
+	<div>
+		<h1>Liens rapides :</h1>
+		<button onclick="changerURL(9782091317243, 'nathan')">
+			<h1>Maths Ex</h1>
+		</button>
+		<button onclick="changerURL(9782091317113, 'nathan')">
+			<h1>Maths Spe</h1>
+		</button>
+		<!-- <button onclick="changerURL(9782017102120, 'hachette')">
+			<h1></h1>
+		</button> -->
+	</div>
+
 	<!-- <div>
 		<h1>Liens rapides :</h1>
 		<button onclick="changerURL(9782017102106, 'hachette')">
@@ -221,12 +234,10 @@
 			else if (editionchoisie == 'nathan') {
 				console.log("nathan");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
-				diviframe.style.display = '';
+				diviframe.style.display = 'none';
 				slider.style.display = '';
-				divimg.style.display = 'none';
+				divimg.style.display = '';
 				divserver.style.display = 'none';
-				document.documentElement.style.setProperty('--iframe-width', '1152px');
-				document.documentElement.style.setProperty('--iframe-height', '1594px');
 			}
 			else {
 				document.getElementById("editionesthcoisieest").innerHTML = "&#9888 Cette édition n'est pas encore supportée &#9888";
@@ -298,8 +309,8 @@
 				iframe2.src = newUrl2;
 			}
 			else if (editionchoisie == 'nathan') {
-				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page0.jpg";
-				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page1.jpg";
+				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page1.jpg";
+				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page2.jpg";
 				img1.src = newUrl1;
 				img2.src = newUrl2;
 			}
