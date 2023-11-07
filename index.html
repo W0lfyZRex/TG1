@@ -42,8 +42,7 @@
 			<label for="edition">Choisissez une édition :</label>
 			<select name="edition" id="edition-select" onchange="editionchoisie()">
 				<option value="hachette">Hachette</option>
-				<option value="didier">Didier</option>
-				<option value="hatier">Hatier</option>
+				<option value="didier-hatier">Didier/Hatier</option>
 				<option value="belin">Belin</option>
 				<option value="LLS">LeLivreScolaire</option>
 				<option value="sesa">Sesamath</option>
@@ -82,6 +81,9 @@
 		<button onclick="changerURL(9782047390726, 'nathan')">
 			<h1>PC Spe</h1>
 		</button>
+		<button onclick="changerURL(9782016289853, 'hachette')">
+			<h1>HG</h1>
+		</button>
 		<button onclick="changerURL(9782210114012, 'magnard')">
 			<h1>Anglais (magnard)</h1>
 		</button>
@@ -93,41 +95,6 @@
 		</button> -->
 	</div>
 
-	<!-- <div>
-		<h1>Liens rapides :</h1>
-		<button onclick="changerURL(9782017102106, 'hachette')">
-			<h1>Declic Maths 1re</h1>
-		</button>
-		<button onclick="changerURL(9782017102120, 'hachette')">
-			<h1>Physique Chimie 1re</h1>
-		</button>
-		<button onclick="changerURL(9782017102243, 'hachette')">
-			<h1>Mitreden Allemand 1re</h1>
-		</button>
-		<button onclick="changerURL(9782401090132, 'hatier')">
-			<h1>Manuel HB test</h1>
-		</button>
-		<button onclick="changerURL('1ere/histoire-premiere', 'belin')">
-			<h1>Histoire (belin)</h1>
-		</button>
-
-		<button onclick="changerURL('1ere/geographie-premiere', 'belin')">
-			<h1>Geographie (belin)</h1>
-		</button>
-
-		<button onclick="changerURL('48453088', 'LLS')">
-			<h1>ES (LLS)</h1>
-		</button>
-
-		<button onclick="changerURL('ms6_2013', 'sesa')">
-			<h1>Manuel 6e (Sesa)</h1>
-		</button>
-
-		<button onclick="changerURL('9782210113183', 'magnard')">
-			<h1>Magnard test</h1>
-		</button>
-	</div> -->
-
 	<div class="slider">
 		<div id="glissière" onclick="taille()" class="col">
 			<input id="slider" type="range" oninput="taille()" min="30" max="200" class="slider" value="50">
@@ -138,13 +105,13 @@
 		<div id="iframe-1">
 			<div class="iframe-div-1">
 				<iframe id="myframe1"
-					src="https://storage.libmanuels.fr/Magnard/specimen/9782210113183/9/OEBPS/page003.xhtml?interface=postMessage"></iframe>
+					src="assets/img/404.png"></iframe>
 			</div>
 		</div>
 		<div id="iframe-2">
 			<div class="iframe-div-2">
 				<iframe id="myframe2"
-					src="https://storage.libmanuels.fr/Magnard/specimen/9782210113183/9/OEBPS/page003.xhtml?interface=postMessage"></iframe>
+					src="assets/img/404.png"></iframe>
 			</div>
 		</div>
 	</div>
@@ -188,7 +155,7 @@
 				document.documentElement.style.setProperty('--iframe-height', '800px');
 
 			}
-			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
+			else if ((editionchoisie == 'didier-hatier')) {
 				console.log("Didier ou Hatier");
 				document.getElementById("editionesthcoisieest").innerHTML = "";
 				diviframe.style.display = '';
@@ -264,16 +231,28 @@
 			changerURL(code, editionchoisie);
 		}
 
+		function changerEdition(valeur) {
+			var selectElement = document.getElementById('edition-select');
+			for (var i = 0; i < selectElement.options.length; i++) {
+				if (selectElement.options[i].value === valeur) {
+					selectElement.selectedIndex = i;
+					break;
+				}
+			}
+		}
+
 		function changerURL(code, editionchoisie) {
 			var server = document.querySelector('select[name="server"]').value;
 			console.log(server);
 			if (editionchoisie == 'hachette') {
+				// changerEdition('hachette');
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
 			}
-			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
+			else if ((editionchoisie == 'didier-hatier')) {
+				// changerEdition('didier-hatier');
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page1.xhtml?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -281,6 +260,7 @@
 			}
 			// https://nohamr.github.io/Manuelcontent/Belin/1ere/geographie-premiere/page1.jpg
 			else if (editionchoisie == 'belin') {
+				// changerEdition('belin');
 				var newUrl1 = "https://nohamr.github.io/Manuelcontent/Belin/" + code + "/page1.jpg";
 				var newUrl2 = "https://nohamr.github.io/Manuelcontent/Belin/" + code + "/page2.jpg";
 				img1.src = newUrl1;
@@ -288,6 +268,7 @@
 			}
 			// https://assets.lls.fr/books/48453088/print/14.jpg
 			else if (editionchoisie == 'LLS') {
+				// changerEdition('LLS');
 				var newUrl1 = "https://assets.lls.fr/books/" + code + "/print/1.jpg";
 				var newUrl2 = "https://assets.lls.fr/books/" + code + "/print/2.jpg";
 				img1.src = newUrl1;
@@ -295,6 +276,7 @@
 			}
 			// https://manuel.sesamath.net/imgs_produites/pages/ms6_2013/ms6_2013_page0.gif
 			else if (editionchoisie == 'sesa') {
+				// changerEdition('sesa');
 				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Sesamath/" + code + "/page0.gif";
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Sesamath/" + code + "/page1.gif";
 				img1.src = newUrl1;
@@ -305,6 +287,7 @@
 			// https://storage.libmanuels.fr/Magnard/specimen/9782210113183/9/OEBPS/page005.xhtml
 			// https://storage.libmanuels.fr/Magnard/specimen/9782210118201/1/OEBPS/page005.xhtml
 			else if (editionchoisie == 'magnard') {
+				// changerEdition('magnard');
 				var newUrl1 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
 				var newUrl2 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -312,12 +295,14 @@
 			}
 			// https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/8/OEBPS/page005.xhtml
 			else if (editionchoisie == 'delagrave') {
+				// changerEdition('delagrave');
 				var newUrl1 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
 				var newUrl2 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
 			}
 			else if (editionchoisie == 'nathan') {
+				// changerEdition('nathan');
 				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page1.jpg";
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page2.jpg";
 				img1.src = newUrl1;
@@ -359,7 +344,7 @@
 				nbpage.value = page1;
 			}
 			// page1.jpg
-			else if ((editionchoisie == 'didier') || (editionchoisie == 'hatier')) {
+			else if ((editionchoisie == 'didier-hatier')) {
 				console.log("hatier ou didier ou belin");
 				page1 += delta;
 				page2 += delta;
@@ -494,7 +479,7 @@
 	<script>
 		function taille() {
 			var entree = document.getElementById("slider");
-			document.documentElement.style.setProperty('--scalenb', entree.value/100)
+			document.documentElement.style.setProperty('--scalenb', entree.value / 100)
 		}
 	</script>
 
@@ -594,5 +579,8 @@
 
 		capture();</script> -->
 </body>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5b5f970a1c2047c887525b306b0211a2"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+	data-cf-beacon='{"token": "5b5f970a1c2047c887525b306b0211a2"}'></script><!-- End Cloudflare Web Analytics -->
+
 </html>
