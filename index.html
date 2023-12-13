@@ -7,6 +7,11 @@
 	<link rel="shortcut icon" href="assets/img/icone.ico" type="image/x-icon">
 	<!-- <script src="js.js"></script> -->
 	<meta name="viewport" content="width=device-width">
+	<!-- <style>
+		.mobile-buttons {
+			display: none;
+		}
+	</style> -->
 </head>
 
 <body onload="editionchoisie(), checkCookie()">
@@ -101,17 +106,25 @@
 		</div>
 	</div>
 
+	<!-- <div class="mobile-buttons">
+		<button id="openWebpageButton1">Open Webpage</button>
+		<button id="openWebpageButton2">Open Webpage</button>
+	</div> -->
+
+	<div>
+		<a id="a1" href="" target="_blank">1</a>
+		<a id="a2" href="" target="_blank">2</a>
+	</div>
+
 	<div id="iframe" style="max-width: 30vh;">
 		<div id="iframe-1">
 			<div class="iframe-div-1">
-				<iframe id="myframe1"
-					src="assets/img/404.png"></iframe>
+				<iframe id="myframe1" src="assets/img/404.png"></iframe>
 			</div>
 		</div>
 		<div id="iframe-2">
 			<div class="iframe-div-2">
-				<iframe id="myframe2"
-					src="assets/img/404.png"></iframe>
+				<iframe id="myframe2" src="assets/img/404.png"></iframe>
 			</div>
 		</div>
 	</div>
@@ -131,14 +144,17 @@
 		var iframe2 = document.getElementById("myframe2");
 		var diviframe = document.getElementById("iframe")
 		var img1 = document.getElementById("myimg1");
-		var img2 = document.getElementById("myimg2")
+		var img2 = document.getElementById("myimg2");
 		var divimg = document.getElementById("img");
-		var divserver = document.getElementById("server")
+		var divserver = document.getElementById("server");
 		var url1 = iframe1.src;
 		var url2 = iframe2.src;
 		var page1 = 1;
 		var page2 = 2;
 		var nbpage = document.getElementById("nbpage");
+
+		var a1 = document.getElementById("a1");
+		var a2 = document.getElementById("a2");
 
 		function editionchoisie() {
 			var editionchoisie = document.getElementsByName("edition")[0].value;
@@ -250,6 +266,8 @@
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			else if ((editionchoisie == 'didier-hatier')) {
 				// changerEdition('didier-hatier');
@@ -257,6 +275,8 @@
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			// https://nohamr.github.io/Manuelcontent/Belin/1ere/geographie-premiere/page1.jpg
 			else if (editionchoisie == 'belin') {
@@ -265,6 +285,8 @@
 				var newUrl2 = "https://nohamr.github.io/Manuelcontent/Belin/" + code + "/page2.jpg";
 				img1.src = newUrl1;
 				img2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			// https://assets.lls.fr/books/48453088/print/14.jpg
 			else if (editionchoisie == 'LLS') {
@@ -273,6 +295,8 @@
 				var newUrl2 = "https://assets.lls.fr/books/" + code + "/print/2.jpg";
 				img1.src = newUrl1;
 				img2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			// https://manuel.sesamath.net/imgs_produites/pages/ms6_2013/ms6_2013_page0.gif
 			else if (editionchoisie == 'sesa') {
@@ -281,6 +305,8 @@
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Sesamath/" + code + "/page1.gif";
 				img1.src = newUrl1;
 				img2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			// https://storage.libmanuels.fr/Magnard/specimen/9782210116252/4/OEBPS/images/bg003_01.jpg
 			// https://storage.libmanuels.fr/Magnard/specimen/9782210116252/4/OEBPS/page001.xhtml
@@ -292,6 +318,8 @@
 				var newUrl2 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			// https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/8/OEBPS/page005.xhtml
 			else if (editionchoisie == 'delagrave') {
@@ -300,6 +328,8 @@
 				var newUrl2 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
 				iframe2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			else if (editionchoisie == 'nathan') {
 				// changerEdition('nathan');
@@ -307,6 +337,8 @@
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page2.jpg";
 				img1.src = newUrl1;
 				img2.src = newUrl2;
+				a1.href = newUrl1;
+				a2.href = newUrl2;
 			}
 			else {
 
@@ -578,6 +610,43 @@
 		};
 
 		capture();</script> -->
+
+	<!-- <script>
+		function isMobileDevice() {
+			return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+		}
+
+		function updateButtonVisibility() {
+			var mobileButtons = document.querySelector('.mobile-buttons');
+			if (isMobileDevice()) {
+				mobileButtons.style.display = 'block';
+			} else {
+				mobileButtons.style.display = 'block';
+			}
+		}
+
+		window.onload = updateButtonVisibility;
+		window.onresize = updateButtonVisibility;
+
+		// Function to open a webpage when the button is clicked
+		function openWebpage(nb) {
+			var iframe1 = document.getElementById("myframe1");
+			var iframe2 = document.getElementById("myframe2");
+			var img1 = document.getElementById("myimg1");
+			var img2 = document.getElementById("myimg2");
+			// window.location.href = 'https://example.com'; // Replace with your desired URL
+			if (nb == 'openWebpageButton1') {
+				window.open(iframe1.src, '_blank');
+			} else {
+				window.open(iframe2.src, '_blank');
+			}
+			
+		}
+
+		// Adding click event listener to the button
+		document.getElementById('openWebpageButton1').addEventListener('click', openWebpage(openWebpageButton1));
+		document.getElementById('openWebpageButton2').addEventListener('click', openWebpage(openWebpageButton2));
+	</script> -->
 </body>
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
