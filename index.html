@@ -34,13 +34,13 @@
 				<a href="rechercher.html">Cherche ton code ici</a>
 			</div>
 			<input type="text" id="code" name="code" value="9782091317243">
-			<button onclick="urlachanger()">Changer de livre</button>
+			<button onclick="urlachanger()">update</button>
 		</div>
 
 		<div>
 			<label for="nbpage">Entrez la page :</label>
 			<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
-			<button onclick="changerNBpage()">Changer la page du livre</button>
+			<button onclick="changerNBpage()">update</button>
 		</div>
 
 		<div>
@@ -90,10 +90,10 @@
 			<h1>HG</h1>
 		</button>
 		<button onclick="changerURL(9782210114012, 'magnard')">
-			<h1>Anglais (magnard)</h1>
+			<h1>Anglais</h1>
 		</button>
 		<button onclick="changerURL(48452499, 'LLS')">
-			<h1>ES (lls)</h1>
+			<h1>ES</h1>
 		</button>
 		<!-- <button onclick="changerURL(9782017102120, 'hachette')">
 			<h1></h1>
@@ -106,15 +106,16 @@
 		</div>
 	</div>
 
-	<!-- <div class="mobile-buttons">
-		<button id="openWebpageButton1">Open Webpage</button>
-		<button id="openWebpageButton2">Open Webpage</button>
-	</div> -->
-
+	<div id="changepagebuttonmobile">
+		<button onclick="pageachanger(-2)">&#x2190;</button>
+		<button onclick="pageachanger(2)">&#x2192;</button>
+	</div>
+<br><br>
 	<div>
 		<a id="a1" href="" target="_blank">1</a>
 		<a id="a2" href="" target="_blank">2</a>
 	</div>
+
 
 	<div id="iframe" style="max-width: 30vh;">
 		<div id="iframe-1">
@@ -134,7 +135,7 @@
 		<img id="myimg2" src="assets/img/404.png">
 	</div>
 
-	<div id="changepagebutton">
+	<div id="changepagebuttondesktop">
 		<button onclick="pageachanger(-2)">&#x2190; Page précédente</button>
 		<button onclick="pageachanger(2)">Page suivante &#x2192;</button>
 	</div>
