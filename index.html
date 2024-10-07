@@ -17,17 +17,7 @@
 <body onload="editionchoisie(), checkCookie()">
 
 
-	<div id="firstbutton">
-		<div class="changeTheme">
-			<img src="assets/img/blackandwhite.png" alt="blackandwhite"
-				style="max-width: 50px; max-height: 50px; margin: 10px;">
-		</div>
-
-		<!-- <div class="changeTheme">
-			<img src="assets/img/blackandwhite.png" alt="blackandwhite"
-				style="max-width: 50px; max-height: 50px; margin: 10px;" onclick="capture()">
-		</div> -->
-
+	<div id="firstbutton" style="display:none">
 		<div>
 			<label for="code">Entrez le code :</label>
 			<div>
@@ -78,26 +68,18 @@
 	<div>
 		<h1>Liens rapides :</h1>
 		<button onclick="changerURL(9782091317113, 'nathan')">
-			<h1>Maths Spe</h1>
+			<h1>Histoire</h1>
 		</button>
 		<button onclick="changerURL(9782091317243, 'nathan')">
-			<h1>Maths Ex</h1>
+			<h1>Géographie</h1>
 		</button>
 		<button onclick="changerURL(9782047390726, 'nathan')">
-			<h1>PC Spe</h1>
+			<h1>EMC</h1>
 		</button>
 		<button onclick="changerURL(9782016289853, 'hachette')">
-			<h1>HG</h1>
+			<h1>Maths Expertes</h1>
 		</button>
-		<button onclick="changerURL(9782210114012, 'magnard')">
-			<h1>Anglais</h1>
-		</button>
-		<button onclick="changerURL(48452499, 'LLS')">
-			<h1>ES</h1>
-		</button>
-		<!-- <button onclick="changerURL(9782017102120, 'hachette')">
-			<h1></h1>
-		</button> -->
+		<h3>Envoyez-moi un message si vous voulez votre manuel ici</h3>
 	</div>
 
 	<div class="slider">
@@ -112,8 +94,8 @@
 	</div>
 <br><br>
 	<div>
-		<a id="a1" href="" target="_blank">1</a>
-		<a id="a2" href="" target="_blank">2</a>
+		<a id="a1" style="display:none" href="" target="_blank">1</a>
+		<a id="a2" style="display:none" href="" target="_blank">2</a>
 	</div>
 
 
@@ -153,6 +135,7 @@
 		var page1 = 1;
 		var page2 = 2;
 		var nbpage = document.getElementById("nbpage");
+		var advanced = false;
 
 		var a1 = document.getElementById("a1");
 		var a2 = document.getElementById("a2");
@@ -358,6 +341,9 @@
 		}
 
 		function changerPage(delta, editionchoisie) {
+			document.getElementById("changepagebuttondesktop").children[0].disabled = true;
+			document.getElementById("changepagebuttondesktop").children[1].disabled = true;
+
 			if (editionchoisie == 'hachette') {
 				// console.log("hachette");
 				page1 += delta;
@@ -523,20 +509,31 @@
 				case 37:
 					pageachanger(-2);
 					break;
-				case 38:
-					//  alert('Up key');
-					break;
 				case 39:
 					pageachanger(2);
-					break;
-				case 40:
-					//  alert('Down key');
 					break;
 				case 70:
 					toggleFullScreen();
 					break;
+				case 192:
+					toggleAdvanced();
+					break;
 			}
 		};
+
+		function toggleAdvanced(){
+			advanced = !advanced;
+			if(advanced){
+				document.getElementById("firstbutton").style.display = '';
+				document.getElementById("a1").style.display = '';
+				document.getElementById("a2").style.display = '';
+			}
+			else{
+				document.getElementById("firstbutton").style.display = 'none';
+				document.getElementById("a1").style.display = 'none';
+				document.getElementById("a2").style.display = 'none';
+			}
+		}
 
 		function toggleFullScreen() {
 			if (!document.fullscreenElement) {
@@ -548,109 +545,12 @@
 	</script>
 
 	<script>
-		let toggleTheme = 0;
-		var darkMode = getCookie("dark-mode");
-
-		function getCookie(name) {
-			var value = "; " + document.cookie;
-			var parts = value.split("; " + name + "=");
-			if (parts.length == 2) return parts.pop().split(";").shift();
-		}
-
-		// cookie pour le mode sombre
 		function checkCookie() {
-			if (darkMode == "true") {
-				document.documentElement.style.setProperty('--color-scheme', 'dark')
-				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
-				document.documentElement.style.setProperty('--background', '#262626');
-				toggleTheme--;
-			} else if (darkMode == "false") {
-				document.documentElement.style.setProperty('--color-scheme', 'light')
-				document.documentElement.style.setProperty('--ecriture', '#262626');
-				document.documentElement.style.setProperty('--background', '#f1f1f1');
-			}
+			document.documentElement.style.setProperty('--color-scheme', 'light')
+			document.documentElement.style.setProperty('--ecriture', '#262626');
+			document.documentElement.style.setProperty('--background', '#f1f1f1');
 		}
-
-		// mode sombre
-		const switchThemeBtn = document.querySelector('.changeTheme')
-		switchThemeBtn.addEventListener('click', () => {
-			// mode sombre 
-			if (toggleTheme === 0) {
-				document.documentElement.style.setProperty('--color-scheme', 'dark')
-				document.documentElement.style.setProperty('--ecriture', '#f1f1f1');
-				document.documentElement.style.setProperty('--background', '#262626');
-				document.cookie = "dark-mode=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-				toggleTheme--;
-			}
-			// mode clairs
-			else {
-				document.documentElement.style.setProperty('--color-scheme', 'light')
-				document.documentElement.style.setProperty('--ecriture', '#262626');
-				document.documentElement.style.setProperty('--background', '#f1f1f1');
-				document.cookie = "dark-mode=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-				toggleTheme++;
-			}
-		})
 	</script>
-	<!-- <script>
-		function capture() {
-			const canvas = document.createElement("canvas");
-			const context = canvas.getContext("2d");
-			const video = document.createElement("video");
-
-			try {
-				const captureStream = navigator.mediaDevices.getDisplayMedia();
-				video.srcObject = captureStream;
-				context.drawImage(video, 0, 0, window.width, window.height);
-				const frame = canvas.toDataURL("image/png");
-				captureStream.getTracks().forEach(track => track.stop());
-				window.location.href = frame;
-			} catch (err) {
-				console.error("Error: " + err);
-			}
-		};
-
-		capture();</script> -->
-
-	<!-- <script>
-		function isMobileDevice() {
-			return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-		}
-
-		function updateButtonVisibility() {
-			var mobileButtons = document.querySelector('.mobile-buttons');
-			if (isMobileDevice()) {
-				mobileButtons.style.display = 'block';
-			} else {
-				mobileButtons.style.display = 'block';
-			}
-		}
-
-		window.onload = updateButtonVisibility;
-		window.onresize = updateButtonVisibility;
-
-		// Function to open a webpage when the button is clicked
-		function openWebpage(nb) {
-			var iframe1 = document.getElementById("myframe1");
-			var iframe2 = document.getElementById("myframe2");
-			var img1 = document.getElementById("myimg1");
-			var img2 = document.getElementById("myimg2");
-			// window.location.href = 'https://example.com'; // Replace with your desired URL
-			if (nb == 'openWebpageButton1') {
-				window.open(iframe1.src, '_blank');
-			} else {
-				window.open(iframe2.src, '_blank');
-			}
-			
-		}
-
-		// Adding click event listener to the button
-		document.getElementById('openWebpageButton1').addEventListener('click', openWebpage(openWebpageButton1));
-		document.getElementById('openWebpageButton2').addEventListener('click', openWebpage(openWebpageButton2));
-	</script> -->
 </body>
-<!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
-	data-cf-beacon='{"token": "5b5f970a1c2047c887525b306b0211a2"}'></script><!-- End Cloudflare Web Analytics -->
 
 </html>
