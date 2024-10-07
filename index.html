@@ -343,7 +343,14 @@
 		function changerPage(delta, editionchoisie) {
 			document.getElementById("changepagebuttondesktop").children[0].disabled = true;
 			document.getElementById("changepagebuttondesktop").children[1].disabled = true;
-
+			document.getElementById("changepagebuttonmobile").children[0].disabled = true;
+			document.getElementById("changepagebuttonmobile").children[1].disabled = true;
+			setTimeout(()=>{
+				document.getElementById("changepagebuttondesktop").children[0].disabled = false;
+				document.getElementById("changepagebuttondesktop").children[1].disabled = false;
+				document.getElementById("changepagebuttonmobile").children[0].disabled = false;
+				document.getElementById("changepagebuttonmobile").children[1].disabled = false;
+			},700)
 			if (editionchoisie == 'hachette') {
 				// console.log("hachette");
 				page1 += delta;
