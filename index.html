@@ -28,12 +28,6 @@
 		</div>
 
 		<div>
-			<label for="nbpage">Entrez la page :</label>
-			<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
-			<button onclick="changerNBpage()">update</button>
-		</div>
-
-		<div>
 			<label for="edition">Choisissez une édition :</label>
 			<select name="edition" id="edition-select" onchange="editionchoisie()">
 				<option value="hachette">Hachette</option>
@@ -81,8 +75,13 @@
 			<h1>Maths Expertes</h1>
 		</button>
 	</div>
-
+	<div>
+		<label for="nbpage">Entrez la page :</label>
+		<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
+		<button onclick="changerNBpage()">update</button>
+	</div>
 	<div class="slider">
+		<h1>Taille des pages: </h1>
 		<div id="glissière" onclick="taille()" class="col">
 			<input id="slider" type="range" oninput="taille()" min="30" max="200" class="slider" value="50">
 		</div>
