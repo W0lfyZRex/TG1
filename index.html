@@ -246,6 +246,7 @@
 			console.log(server);
 			if (editionchoisie == 'hachette') {
 				changerEdition('hachette');
+				editionchoisie()
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_1.html?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/Page_2.html?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -255,6 +256,7 @@
 			}
 			else if ((editionchoisie == 'didier-hatier')) {
 				changerEdition('didier-hatier');
+				editionchoisie()
 				var newUrl1 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page1.xhtml?interface=postMessage";
 				var newUrl2 = "https://exobank.hachette-livre.fr/contents/final/" + code + "-fxl/OEBPS/page2.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -265,6 +267,7 @@
 			// https://nohamr.github.io/Manuelcontent/Belin/1ere/geographie-premiere/page1.jpg
 			else if (editionchoisie == 'belin') {
 				changerEdition('belin');
+				editionchoisie()
 				var newUrl1 = "https://nohamr.github.io/Manuelcontent/Belin/" + code + "/page1.jpg";
 				var newUrl2 = "https://nohamr.github.io/Manuelcontent/Belin/" + code + "/page2.jpg";
 				img1.src = newUrl1;
@@ -275,6 +278,7 @@
 			// https://assets.lls.fr/books/48453088/print/14.jpg
 			else if (editionchoisie == 'LLS') {
 				changerEdition('LLS');
+				editionchoisie()
 				var newUrl1 = "https://assets.lls.fr/books/" + code + "/print/1.jpg";
 				var newUrl2 = "https://assets.lls.fr/books/" + code + "/print/2.jpg";
 				img1.src = newUrl1;
@@ -285,6 +289,7 @@
 			// https://manuel.sesamath.net/imgs_produites/pages/ms6_2013/ms6_2013_page0.gif
 			else if (editionchoisie == 'sesa') {
 				changerEdition('sesa');
+				editionchoisie()
 				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Sesamath/" + code + "/page0.gif";
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Sesamath/" + code + "/page1.gif";
 				img1.src = newUrl1;
@@ -298,6 +303,7 @@
 			// https://storage.libmanuels.fr/Magnard/specimen/9782210118201/1/OEBPS/page005.xhtml
 			else if (editionchoisie == 'magnard') {
 				changerEdition('magnard');
+				editionchoisie()
 				var newUrl1 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
 				var newUrl2 = "https://storage.libmanuels.fr/Magnard/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -308,6 +314,7 @@
 			// https://storage.libmanuels.fr/Delagrave/specimen/9782206103983/8/OEBPS/page005.xhtml
 			else if (editionchoisie == 'delagrave') {
 				changerEdition('delagrave');
+				editionchoisie()
 				var newUrl1 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page002.xhtml?interface=postMessage";
 				var newUrl2 = "https://storage.libmanuels.fr/Delagrave/specimen/" + code + '/' + server + "/OEBPS/page003.xhtml?interface=postMessage";
 				iframe1.src = newUrl1;
@@ -317,6 +324,7 @@
 			}
 			else if (editionchoisie == 'nathan') {
 				changerEdition('nathan');
+				editionchoisie()
 				var newUrl1 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page1.jpg";
 				var newUrl2 = "https://raw.githubusercontent.com/NohamR/Manuelcontent/main/Nathan/" + code + "/page2.jpg";
 				img1.src = newUrl1;
