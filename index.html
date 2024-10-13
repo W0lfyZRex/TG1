@@ -350,6 +350,7 @@
 
 		function pageachanger(delta) {
 			// console.log("pageachanger");
+			if(document.getElementById("changepagebuttondesktop").children[0].disabled) return
 			var editionchoisie = document.getElementsByName("edition")[0].value;
 			changerPage(delta, editionchoisie);
 		}
