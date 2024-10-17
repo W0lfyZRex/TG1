@@ -129,8 +129,6 @@
         font-size: 16px;
         line-height: 1.5;
         margin-bottom: 10px;
-        width: 100px;
-        height: 40px;
     }
 
     button:hover {
@@ -156,6 +154,10 @@
         /* bottom: 0px;
         left: 50%;
         transform: translate(-50%); */
+    }
+    .btn {
+        width: 100px;
+        height: 40px;
     }
 }
 
@@ -290,8 +292,6 @@
         font-size: 16px;
         line-height: 1.5;
         margin-bottom: 10px;
-        width: 200px;
-        height: 40px;
     }
 
     button:hover {
@@ -317,6 +317,11 @@
     }
     #changepagebuttonmobile {
         display: none;
+    }
+    
+    .btn {
+        width: 200px;
+        height: 40px;
     }
 }
 

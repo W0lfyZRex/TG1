@@ -16,7 +16,24 @@ var a1 = document.getElementById("a1");
 var a2 = document.getElementById("a2");
 
 function changerURLOut(url) {
-    //ok
+    Swal.fire({
+        title: "Site externe",
+        html: `
+        Vous vous apprêtez à vous rendre sur <b>Calameo</b>.
+        `,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Annuler",
+        confirmButtonText: `
+        <i class="fa fa-external-link"></i> Continuer
+        `
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = url
+        }
+      });
 }
 
 function editionchoisie() {

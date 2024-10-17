@@ -7,6 +7,7 @@
 	<link rel="shortcut icon" href="assets/img/icone.ico" type="image/x-icon">
 	<!-- <script src="js.js"></script> -->
 	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 	<!-- <style>
 		.mobile-buttons {
 			display: none;
@@ -65,7 +66,7 @@
 		<button onclick="changerURLOut('https://www.calameo.com/read/003221622c5e0d0b70eac?authid=Mgr3I6549pUc')">
 			<h1>Histoire</h1>
 		</button>
-		<button onclick="changerURLOut('https://fr.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX')">
+		<button onclick="changerURLOut('https://www.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX')">
 			<h1>Géographie</h1>
 		</button>
 		<button onclick="changerURL(9782210114319, 'magnard')">
@@ -84,7 +85,7 @@
 	<div>
 		<label for="nbpage">Entrez la page :</label>
 		<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
-		<button onclick="changerNBpage()">Appliquer</button>
+		<button class="btn" onclick="changerNBpage()">Appliquer</button>
 	</div>
 	<div class="slider">
 		<h1>Taille des pages: </h1>
@@ -94,8 +95,8 @@
 	</div>
 
 	<div id="changepagebuttonmobile">
-		<button onclick="pageachanger(-2)">&#x2190;</button>
-		<button onclick="pageachanger(2)">&#x2192;</button>
+		<button class="btn" onclick="pageachanger(-2)">&#x2190;</button>
+		<button class="btn" onclick="pageachanger(2)">&#x2192;</button>
 	</div>
 <br><br>
 	<div>
@@ -127,9 +128,10 @@
 	<br>
 
 	<div id="changepagebuttondesktop">
-		<button onclick="pageachanger(-2)">&#x2190; Page précédente</button>
-		<button onclick="pageachanger(2)">Page suivante &#x2192;</button>
+		<button class="btn" onclick="pageachanger(-2)">&#x2190; Page précédente</button>
+		<button class="btn" onclick="pageachanger(2)">Page suivante &#x2192;</button>
 	</div>
+	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 	<script src="index.js"></script>
