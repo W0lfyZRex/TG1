@@ -15,11 +15,52 @@ var advanced = false;
 var a1 = document.getElementById("a1");
 var a2 = document.getElementById("a2");
 
-function changerURLOut(url) {
+function hub() {
+    Swal.fire({
+        title: "Choisissez un manuel",
+        html: `
+        <button onclick="changerURLOut('https://www.calameo.com/read/003221622c5e0d0b70eac?authid=Mgr3I6549pUc', 'Calameo')">
+			<h1>Histoire</h1>
+		</button>
+		<button onclick="changerURLOut('https://www.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX', 'Calameo')">
+			<h1>Géographie</h1>
+		</button>
+		<button onclick="changerURLOut('https://www.libmanuels.fr/demo/9782210114302/specimen/2/', 'Libmanuels')">
+			<h1>EMC</h1>
+		</button>
+		<button onclick="changerURLOut('https://www.calameo.com/read/004822953b9519a03ed95', 'Calameo')">
+			<h1>Maths Exp.</h1>
+		</button>
+		<button onclick="changerURLOut('https://www.calameo.com/read/0048229533c3f405328b4', 'Calameo')">
+			<h1>Maths Spé.</h1>
+		</button>
+		<button onclick="changerURLOut('https://www.calameo.com/read/003221622c2a061e54fab?authid=8JEKdft78E9d', 'Calameo')">
+			<h1>HGGSP</h1>
+		</button>
+        `,
+        icon: "question",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: `Je veux un autre manuel`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Autre manuel",
+                text: "Envoyez-moi un message avec le nom de votre manuel et son édition (Magnard, Hachette, etc.)",
+                icon: "info",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `D'accord`
+            }).then((result) => {
+                hub();
+            });
+        }
+    });
+}
+
+function changerURLOut(url, site) {
     Swal.fire({
         title: "Site externe",
         html: `
-        Vous vous apprêtez à vous rendre sur <b>Calameo</b>.
+        Vous vous apprêtez à vous rendre sur <b>${site}</b>.
         `,
         icon: "warning",
         showCancelButton: true,
@@ -29,11 +70,13 @@ function changerURLOut(url) {
         confirmButtonText: `
         <i class="fa fa-external-link"></i> Continuer
         `
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
-          window.location = url
+            window.location = url;
+        } else {
+            hub();
         }
-      });
+    });
 }
 
 function editionchoisie() {
@@ -117,6 +160,11 @@ function editionchoisie() {
         divimg.style.display = 'none';
         slider.style.display = 'none';
         divserver.style.display = 'none';
+    }
+    if (!advanced) {
+        document.querySelectorAll(".advanced").forEach(e => {
+            e.style.display = 'none';
+        });
     }
 }
 
@@ -429,14 +477,14 @@ document.onkeydown = function (event) {
 function toggleAdvanced() {
     advanced = !advanced;
     if (advanced) {
-        document.getElementById("firstbutton").style.display = '';
-        document.getElementById("a1").style.display = '';
-        document.getElementById("a2").style.display = '';
+        document.querySelectorAll(".advanced").forEach(e => {
+            e.style.display = '';
+        });
     }
     else {
-        document.getElementById("firstbutton").style.display = 'none';
-        document.getElementById("a1").style.display = 'none';
-        document.getElementById("a2").style.display = 'none';
+        document.querySelectorAll(".advanced").forEach(e => {
+            e.style.display = 'none';
+        });
     }
 }
 

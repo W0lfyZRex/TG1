@@ -15,10 +15,10 @@
 	</style> -->
 </head>
 
-<body onload="editionchoisie(), checkCookie()">
+<body onload="editionchoisie(), checkCookie(), hub()">
 
 
-	<div id="firstbutton" style="display:none">
+	<div class="advanced" id="firstbutton" style="display:none">
 		<div>
 			<label for="code">Entrez le code :</label>
 			<div>
@@ -61,51 +61,34 @@
 	</div>
 
 	<div>
-		<h1>Liens rapides :</h1>
-		<h1>PS: Envoyez-moi un message si vous voulez votre manuel ici</h3>
-		<button onclick="changerURLOut('https://www.calameo.com/read/003221622c5e0d0b70eac?authid=Mgr3I6549pUc')">
-			<h1>Histoire</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX')">
-			<h1>Géographie</h1>
-		</button>
-		<button onclick="changerURL(9782210114319, 'magnard')">
-			<h1>EMC</h1>
-		</button>
-		<button onclick="changerURL(9782016290101, 'hachette')">
-			<h1>Maths Exp.</h1>
-		</button>
-		<button onclick="changerURL(9782016290064, 'hachette')">
-			<h1>Maths Spé.</h1>
-		</button>
-		<button onclick="changerURL('terminale/hggsp-terminale', 'belin')">
-			<h1>HGGSP</h1>
+		<button onclick="hub()">
+			<h1>Cliquez ici pour accéder aux manuels</h1>
 		</button>
 	</div>
-	<div>
+	<div class="advanced" style="display:none">
 		<label for="nbpage">Entrez la page :</label>
 		<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
 		<button class="btn" onclick="changerNBpage()">Appliquer</button>
 	</div>
-	<div class="slider">
+	<div class="slider advanced" style="display:none">
 		<h1>Taille des pages: </h1>
 		<div id="glissière" onclick="taille()" class="col">
 			<input id="slider" type="range" oninput="taille()" min="30" max="200" class="slider" value="50">
 		</div>
 	</div>
 
-	<div id="changepagebuttonmobile">
+	<div class="advanced" id="changepagebuttonmobile" style="display:none">
 		<button class="btn" onclick="pageachanger(-2)">&#x2190;</button>
 		<button class="btn" onclick="pageachanger(2)">&#x2192;</button>
 	</div>
 <br><br>
 	<div>
-		<a id="a1" style="display:none" href="" target="_blank">1</a>
-		<a id="a2" style="display:none" href="" target="_blank">2</a>
+		<a class="advanced" id="a1" style="display:none" href="" target="_blank">1</a>
+		<a class="advanced" id="a2" style="display:none" href="" target="_blank">2</a>
 	</div>
 
 
-	<div id="iframe" style="max-width: 30vh;">
+	<div class="advanced" id="iframe" style="max-width: 30vh; display:none;">
 		<div id="iframe-1">
 			<div class="iframe-div-1">
 				<iframe id="myframe1" src="assets/img/404.png"></iframe>
@@ -118,7 +101,7 @@
 		</div>
 	</div>
 
-	<div id="img">
+	<div class="advanced" id="img" style="display:none">
 		<img id="myimg1" src="assets/img/404.png">
 		<img id="myimg2" src="assets/img/404.png">
 	</div>
@@ -127,7 +110,7 @@
 	<br>
 	<br>
 
-	<div id="changepagebuttondesktop">
+	<div class="advanced" id="changepagebuttondesktop" style="display:none">
 		<button class="btn" onclick="pageachanger(-2)">&#x2190; Page précédente</button>
 		<button class="btn" onclick="pageachanger(2)">Page suivante &#x2192;</button>
 	</div>
