@@ -19,24 +19,12 @@ function hub() {
     Swal.fire({
         title: "Choisissez un manuel",
         html: `
-        <button onclick="changerURLOut('https://www.calameo.com/read/003221622c5e0d0b70eac?authid=Mgr3I6549pUc', 'Calameo')">
-			<h1>Histoire</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX', 'Calameo')">
-			<h1>Géographie</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.libmanuels.fr/demo/9782210114302/specimen/2/', 'Libmanuels')">
-			<h1>EMC</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.calameo.com/read/004822953b9519a03ed95', 'Calameo')">
-			<h1>Maths Exp.</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.calameo.com/read/0048229533c3f405328b4', 'Calameo')">
-			<h1>Maths Spé.</h1>
-		</button>
-		<button onclick="changerURLOut('https://www.calameo.com/read/003221622c2a061e54fab?authid=8JEKdft78E9d', 'Calameo')">
-			<h1>HGGSP</h1>
-		</button>
+        <button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/003221622c5e0d0b70eac?authid=Mgr3I6549pUc', 'Calameo')"><h1>Histoire</h1></button>
+		<button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/00322162234bd5e552635?authid=nadWurkhaHUX', 'Calameo')"><h1>Géographie</h1></button>
+		<button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.libmanuels.fr/demo/9782210114302/specimen/2/', 'Libmanuels')"><h1>EMC</h1></button>
+		<button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/004822953b9519a03ed95', 'Calameo')"><h1>Maths Exp.</h1></button>
+		<button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/0048229533c3f405328b4', 'Calameo')"><h1>Maths Spé.</h1></button>
+		<button class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/003221622c2a061e54fab?authid=8JEKdft78E9d', 'Calameo')"><h1>HGGSP</h1></button>
         `,
         icon: "question",
         confirmButtonColor: "#3085d6",
