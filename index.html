@@ -1,124 +1,190 @@
 ﻿<!DOCTYPE html>
 <html>
-
-<head>
-	<title>Manuel</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" href="assets/img/icone.ico" type="image/x-icon">
-	<!-- <script src="js.js"></script> -->
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-	<!-- <style>
+    <head>
+        <title>Manuel</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="shortcut icon"
+            href="assets/img/icone.ico"
+            type="image/x-icon"
+        />
+        <!-- <script src="js.js"></script> -->
+        <meta name="viewport" content="width=device-width" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css"
+        />
+        <!-- <style>
 		.mobile-buttons {
 			display: none;
 		}
 	</style> -->
-</head>
+    </head>
 
-<body onload="editionchoisie(), checkCookie(), hub()">
+    <body onload="editionchoisie(), checkCookie(), hub()">
+        <div class="advanced" id="firstbutton" style="display: none">
+            <div>
+                <label for="code">Entrez le code :</label>
+                <div>
+                    <a href="rechercher.html">Cherche ton code ici</a>
+                </div>
+                <input
+                    type="text"
+                    id="code"
+                    name="code"
+                    value="9782091317243"
+                />
+                <button onclick="urlachanger()">update</button>
+            </div>
 
+            <div>
+                <label for="edition">Choisissez une édition :</label>
+                <select
+                    name="edition"
+                    id="edition-select"
+                    onchange="editionchoisie()"
+                >
+                    <option value="hachette">Hachette</option>
+                    <option value="didier-hatier">Didier/Hatier</option>
+                    <option value="belin">Belin</option>
+                    <option value="LLS">LeLivreScolaire</option>
+                    <option value="sesa">Sesamath</option>
+                    <option value="magnard">Magnard</option>
+                    <option value="delagrave">Delagrave</option>
+                    <option value="nathan">Nathan/Bordas</option>
+                </select>
+                <p id="editionesthcoisieest"></p>
+            </div>
 
-	<div class="advanced" id="firstbutton" style="display:none">
-		<div>
-			<label for="code">Entrez le code :</label>
-			<div>
-				<a href="rechercher.html">Cherche ton code ici</a>
-			</div>
-			<input type="text" id="code" name="code" value="9782091317243">
-			<button onclick="urlachanger()">update</button>
-		</div>
+            <div id="server">
+                <label for="server">Choisissez un server :</label>
+                <select name="server">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </div>
+        </div>
 
-		<div>
-			<label for="edition">Choisissez une édition :</label>
-			<select name="edition" id="edition-select" onchange="editionchoisie()">
-				<option value="hachette">Hachette</option>
-				<option value="didier-hatier">Didier/Hatier</option>
-				<option value="belin">Belin</option>
-				<option value="LLS">LeLivreScolaire</option>
-				<option value="sesa">Sesamath</option>
-				<option value="magnard">Magnard</option>
-				<option value="delagrave">Delagrave</option>
-				<option value="nathan">Nathan/Bordas</option>
+        <div>
+            <button onclick="hub()">
+                <h1>Cliquez ici changer de manuel</h1>
+            </button>
+        </div>
+        <div class="advanced">
+            <div class="advanced" style="display: none">
+                <label for="nbpage">Entrez la page :</label>
+                <input
+                    type="text"
+                    id="nbpage"
+                    name="nbpage"
+                    value="1"
+                    onchange="changerNBpage()"
+                />
+                <button class="btn" onclick="changerNBpage()">Appliquer</button>
+            </div>
+            <div class="slider advanced" style="display: none">
+                <h1>Taille des pages:</h1>
+                <div id="glissière" onclick="taille()" class="col">
+                    <input
+                        id="slider"
+                        type="range"
+                        oninput="taille()"
+                        min="30"
+                        max="200"
+                        class="slider"
+                        value="50"
+                    />
+                </div>
+            </div>
 
-			</select>
-			<p id="editionesthcoisieest"></p>
-		</div>
+            <div
+                class="advanced"
+                id="changepagebuttonmobile"
+                style="display: none"
+            >
+                <button class="btn" onclick="pageachanger(-2)">&#x2190;</button>
+                <button class="btn" onclick="pageachanger(2)">&#x2192;</button>
+            </div>
+            <br /><br />
+            <div>
+                <a
+                    class="advanced"
+                    id="a1"
+                    style="display: none"
+                    href=""
+                    target="_blank"
+                    >1</a
+                >
+                <a
+                    class="advanced"
+                    id="a2"
+                    style="display: none"
+                    href=""
+                    target="_blank"
+                    >2</a
+                >
+            </div>
 
-		<div id="server">
-			<label for="server">Choisissez un server :</label>
-			<select name="server">
-				<option value="1" selected>1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-			</select>
-		</div>
-	</div>
+            <div
+                class="advanced"
+                id="iframe"
+                style="max-width: 30vh; display: none"
+            >
+                <div id="iframe-1">
+                    <div class="iframe-div-1">
+                        <iframe id="myframe1" src="assets/img/404.png"></iframe>
+                    </div>
+                </div>
+                <div id="iframe-2">
+                    <div class="iframe-div-2">
+                        <iframe id="myframe2" src="assets/img/404.png"></iframe>
+                    </div>
+                </div>
+            </div>
 
-	<div>
-		<button onclick="hub()">
-			<h1>Cliquez ici pour accéder aux manuels</h1>
-		</button>
-	</div>
-	<div class="advanced" style="display:none">
-		<label for="nbpage">Entrez la page :</label>
-		<input type="text" id="nbpage" name="nbpage" value="1" onchange="changerNBpage()">
-		<button class="btn" onclick="changerNBpage()">Appliquer</button>
-	</div>
-	<div class="slider advanced" style="display:none">
-		<h1>Taille des pages: </h1>
-		<div id="glissière" onclick="taille()" class="col">
-			<input id="slider" type="range" oninput="taille()" min="30" max="200" class="slider" value="50">
-		</div>
-	</div>
+            <div class="advanced" id="img" style="display: none">
+                <img id="myimg1" src="assets/img/404.png" />
+                <img id="myimg2" src="assets/img/404.png" />
+            </div>
 
-	<div class="advanced" id="changepagebuttonmobile" style="display:none">
-		<button class="btn" onclick="pageachanger(-2)">&#x2190;</button>
-		<button class="btn" onclick="pageachanger(2)">&#x2192;</button>
-	</div>
-<br><br>
-	<div>
-		<a class="advanced" id="a1" style="display:none" href="" target="_blank">1</a>
-		<a class="advanced" id="a2" style="display:none" href="" target="_blank">2</a>
-	</div>
+            <br />
+            <br />
+            <br />
 
+            <div
+                class="advanced"
+                id="changepagebuttondesktop"
+                style="display: none"
+            >
+                <button class="btn" onclick="pageachanger(-2)">
+                    &#x2190; Page précédente
+                </button>
+                <button class="btn" onclick="pageachanger(2)">
+                    Page suivante &#x2192;
+                </button>
+            </div>
+        </div>
 
-	<div class="advanced" id="iframe" style="max-width: 30vh; display:none;">
-		<div id="iframe-1">
-			<div class="iframe-div-1">
-				<iframe id="myframe1" src="assets/img/404.png"></iframe>
-			</div>
-		</div>
-		<div id="iframe-2">
-			<div class="iframe-div-2">
-				<iframe id="myframe2" src="assets/img/404.png"></iframe>
-			</div>
-		</div>
-	</div>
+        <div
+            id="manueliframecontainer"
+            style="display: none; width: 100%; height: calc(100vh - 50px)"
+        >
+            <iframe
+                id="manueliframe"
+                src=""
+                style="width: 100%; height: 100%; border: none"
+            ></iframe>
+        </div>
 
-	<div class="advanced" id="img" style="display:none">
-		<img id="myimg1" src="assets/img/404.png">
-		<img id="myimg2" src="assets/img/404.png">
-	</div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	<br>
-	<br>
-	<br>
-
-	<div class="advanced" id="changepagebuttondesktop" style="display:none">
-		<button class="btn" onclick="pageachanger(-2)">&#x2190; Page précédente</button>
-		<button class="btn" onclick="pageachanger(2)">Page suivante &#x2192;</button>
-	</div>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
-	<script src="index.js"></script>
-
-</body>
-
+        <script src="index.js"></script>
+    </body>
 </html>
