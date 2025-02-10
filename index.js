@@ -25,7 +25,7 @@ function hub() {
 		<button style="background-color:#6CC247" class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/004822953b9519a03ed95')"><h1>Maths Exp.</h1></button>
 		<button style="background-color:#E94F45" class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/0048229533c3f405328b4')"><h1>Maths Spé.</h1></button>
 		<button style="background-color:#E3002B" class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://www.calameo.com/read/003221622c2a061e54fab?authid=8JEKdft78E9d')"><h1>HGGSP</h1></button>
-		<button style="background-color:#E3002B" class="swal2-styled swal2-default-outline" onclick="changerURLOut('manuels/PC-Bordas.pdf')"><h1>Physique-Chimie</h1></button>
+		<button style="background-color:#e3017e" class="swal2-styled swal2-default-outline" onclick="changerURLOut('https://cdn-1.files.vc/files/bjx/176168e9e9fececa526e92e7e4eee11d.pdf')"><h1>Physique-Chimie</h1></button>
         `,
         icon: "question",
         confirmButtonColor: "#3085d6",
