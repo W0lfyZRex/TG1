@@ -72,11 +72,34 @@
             </div>
         </div>
 
-        <div>
+        <div
+            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            "
+        >
             <button onclick="hub()">
                 <h1>Changer de manuel</h1>
             </button>
+            <button id="fullscreenButton" onclick="toggleFullscreen()">
+                <h1>Mode Plein Ecran</h1>
+            </button>
         </div>
+
+        <script>
+            function toggleFullscreen() {
+                const fullscreenButton =
+                    document.getElementById("fullscreenButton")
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen()
+                    fullscreenButton.innerHTML = "<h1>Mode Fenêtré</h1>"
+                } else if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                    fullscreenButton.innerHTML = "<h1>Mode Plein Ecran</h1>"
+                }
+            }
+        </script>
         <div class="advanced">
             <div class="advanced" style="display: none">
                 <label for="nbpage">Entrez la page :</label>
