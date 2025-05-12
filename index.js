@@ -11,6 +11,7 @@ var page1 = 1;
 var page2 = 2;
 var nbpage = document.getElementById("nbpage");
 var advanced = false;
+var kasprzak = false;
 
 var a1 = document.getElementById("a1");
 var a2 = document.getElementById("a2");
@@ -448,6 +449,9 @@ document.onkeydown = function (event) {
         case 192:
             toggleAdvanced();
             break;
+        case 220:
+            toggleKasprzak();
+            break;
     }
 };
 
@@ -460,6 +464,20 @@ function toggleAdvanced() {
     }
     else {
         document.querySelectorAll(".advanced").forEach(e => {
+            e.style.display = 'none';
+        });
+    }
+}
+
+function toggleKasprzak() {
+    kasprzak = !kasprzak;
+    if (kasprzak) {
+        document.querySelectorAll(".kasprzak").forEach(e => {
+            e.style.display = '';
+        });
+    }
+    else {
+        document.querySelectorAll(".kasprzak").forEach(e => {
             e.style.display = 'none';
         });
     }
